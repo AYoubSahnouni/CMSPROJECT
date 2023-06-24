@@ -1,0 +1,52 @@
+<div class="head" mat-dialog-title>
+  <h1>Update Formulaire</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field class="outline">
+          <mat-label>Matricule</mat-label>
+          <input matInput  placeholder="Matricule" formControlName="matricule" [value]="data.employee.matricule">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput  placeholder="Nom" formControlName="nom" value="employee.nom">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Prenom</mat-label>
+          <input matInput placeholder="Prenom" formControlName="prenom" value="employee.prenom">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Poste</mat-label>
+          <input matInput  placeholder="Poste" formControlName="poste" value="employee.poste">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Siege</mat-label>
+          <input matInput placeholder="Siege" formControlName="siege" value="employee.siege">
+        </mat-form-field>
+        <div formGroupName="telephone">
+          <mat-form-field appearance="outline">
+            <mat-label>Telephone</mat-label>
+            <mat-select value="Selectionner telephone" formControlName="id">
+              <mat-option selected [value]="data.employee.telephone.id">
+                  {{ data.employee.telephone.id + ' : ' + data.employee.telephone.name }}
+              </mat-option>
+              <mat-option *ngFor="let telephone of telephones" [value]="telephone.id">
+                {{ telephone.id + ' : ' + telephone.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="outline">
+          <mat-label>Phone</mat-label>
+          <input matInput mask="(000) 000-0000" placeholder="Ex. (000) 000-0000" formControlName="number">
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button mat-dialog-close>
+          Close
+        </button>
+        <button mat-raised-button type="submit" color="primary">Save</button>
+      </div>
+    </div>
+</form>
