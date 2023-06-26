@@ -13,9 +13,10 @@ import { MatListModule } from '@angular/material/list'
 import { RouterModule } from '@angular/router';
 import { CardsComponent } from './widgets/cards/cards.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { SearchbarComponent } from './widgets/searchbar/searchbar.component';
 import { AreaComponent } from './widgets/area/area.component';
 import { CircleComponent } from './widgets/circle/circle.component';
-import { SearchbarComponent } from './widgets/searchbar/searchbar.component';
+
 import { FormsModule } from '@angular/forms';
 
 
@@ -23,11 +24,11 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     HeaderComponent,
     FooterComponent,
+    SearchbarComponent,
     SidebarComponent,
     CardsComponent,
     AreaComponent,
-    CircleComponent,
-    SearchbarComponent
+    CircleComponent
   ],
   imports: [
     FormsModule,
@@ -46,11 +47,11 @@ import { FormsModule } from '@angular/forms';
   exports:[
     HeaderComponent,
     FooterComponent,
+    SearchbarComponent,
     SidebarComponent,
     CardsComponent,
     AreaComponent,
     CircleComponent,
-    SearchbarComponent
   ]
 })
 export class SharedModule { }

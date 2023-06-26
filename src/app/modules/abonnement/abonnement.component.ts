@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AbonnementService } from 'src/app/service/abonnement.service';
 import { AbonnementAddEditComponent } from '../abonnement-add-edit/abonnement-add-edit.component';
-import { UpdatephoneComponent } from '../updatephone/updatephone.component';
 import { UpdateabonnementComponent } from '../updateabonnement/updateabonnement.component';
 import { Abonnement } from 'src/app/model/abonnement';
 
@@ -46,7 +45,7 @@ export class AbonnementComponent {
       this.service.getAbonnement().subscribe(data => {
       this.Abonnements = data;
       this.ListAll = data;
-      // const t = {naffectation : 1};
+      console.log(this.ListAll);
       this.Abonnements.forEach((res: any) => {
           if(res['nom']=='Orange' && res['montant']==20){
             res['naffectation'] = this.numberorange;
