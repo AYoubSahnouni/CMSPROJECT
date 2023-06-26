@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ServerConfig.entities.Abonnement;
@@ -25,7 +26,30 @@ public class UserService implements IUserService{
 	@Autowired
 	AbonnementRepository ar;
 	
+	
+	@Override
+	public ResponseEntity<User> findByMatriculeAndPassword(String matricule, String password) {
+        User user = ur.findByMatriculeAndPassword(matricule,password);
+        
+        if (user != null && user.getPassword().equals(password)) {
+            return ResponseEntity.ok(user); // Return the user if the password matches
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // Return 401 Unauthorized status
+        }
+    }
+	
+	
+	
+	@Override
+	public Abonnement addAbonnement(Abonnement u) {
+		return ar.save(u);
+	}
+	
+	@Override
 	public User addUser(User u) {
+		
+		
+		System.out.println(u.getAbonnement()+"==================================");
 		
 		if(u.getTelephone() == null) {
 			u.setAffectation(false);
@@ -34,9 +58,18 @@ public class UserService implements IUserService{
 		else {
 			
 			Telephone t = tr.findById(u.getTelephone().getId()).orElse(null);
-			if(t.getUser() == null ) {
+			Abonnement a = ar.findById(u.getAbonnement().getId()).orElse(null);
+			
+			if(t == null || a == null ) {
+				u.setTelephone(null);
+				u.setAbonnement(null);
+				u.setAffectation(false);
+				return ur.save(u);
+			}
+			else if(t.getUser() == null ) {
 				u.setTelephone(t);
 				t.setUser(u);
+				u.setAbonnement(a);
 				u.setAffectation(true);
 				return ur.save(u);
 			}
@@ -86,8 +119,21 @@ public class UserService implements IUserService{
 		}
 		return listUserWithoutPhone;
 	}
-
 	
+	
+	@Override
+	public List<User> findUserwithAbonnements(){
+		List<User> uu = new ArrayList<>();
+		for (User u : ur.findUnaffectedAbonnements()) {
+			if(u.getAbonnement()!= null) {
+				uu.add(u);
+			}
+		}
+		return uu;
+	}
+	
+	
+	@Override
 	public  List<Telephone> findTelephoneByUserAffectation(){
 		List<Telephone> t = new ArrayList<>();
 		for (Telephone telephone : tr.findUnaffectedTelephones()) {
@@ -99,30 +145,64 @@ public class UserService implements IUserService{
 	}
 	
 	
-
-	
-	
-	
-	
 	@Override
-	public User UpdatePhone(User user) {
+	public User UpdateUser(User user) {
 		User u = ur.findById(user.getId()).orElseThrow();
-		Telephone t = tr.findById(u.getTelephone().getId()).orElseThrow();
-		if(u!=null && t!=null || u!=null && t==null) {
+		if(u!=null && u.getTelephone()!=null || u!=null && u.getTelephone()==null) {
 			if(user.getTelephone() == null) {
 				user.setAffectation(false);
 			}else {
 				u.setAffectation(true);
 			}
-			u.setTelephone(user.getTelephone());
-			u.setMatricule(user.getMatricule());
-			u.setNom(user.getNom());
-			u.setPrenom(user.getPrenom());
-			u.setPoste(user.getPoste());
-			u.setSiege(user.getSiege());
-			return ur.save(u);
+			Telephone tt = tr.findById(user.getTelephone().getId()).orElseThrow();
+			Abonnement a = ar.findById(user.getAbonnement().getId()).orElse(null);
+			if(tt == null || a==null) {			
+				u.setTelephone(null);
+				u.setMatricule(user.getMatricule());
+				u.setNom(user.getNom());
+				u.setPrenom(user.getPrenom());
+				u.setNumber(user.getNumber());
+				u.setPoste(user.getPoste());
+				u.setSiege(user.getSiege());
+				u.setAbonnement(null);
+				return ur.save(u);
+			}
+			else if(tt.getUser() == null || a==null){
+				u.setTelephone(tt);
+				u.setMatricule(user.getMatricule());
+				u.setNom(user.getNom());
+				u.setPrenom(user.getPrenom());
+				u.setNumber(user.getNumber());
+				u.setPoste(user.getPoste());
+				u.setSiege(user.getSiege());
+				u.setAbonnement(null);
+				return ur.save(u);
+			}
+			else {
+				u.setTelephone(tt);
+				u.setMatricule(user.getMatricule());
+				u.setNom(user.getNom());
+				u.setPrenom(user.getPrenom());
+				u.setNumber(user.getNumber());
+				u.setPoste(user.getPoste());
+				u.setSiege(user.getSiege());
+				u.setAbonnement(user.getAbonnement());
+				return ur.save(u);
+			}
 		}
 		return null;
+	}
+	
+	public Telephone UpdatePhone(Telephone tele) {
+		Telephone t = tr.findById(tele.getId()).orElseThrow();
+		t.setName(tele.getName());
+		t.setCode(tele.getCode());
+		t.setMarque(tele.getMarque());
+		t.setModel(tele.getModel());
+		t.setDate_acquisition(tele.getDate_acquisition());
+		t.setEtat(tele.getEtat());
+		t.setMontant(tele.getMontant());
+		return tr.save(t);
 	}
 
 	@Override
@@ -135,15 +215,6 @@ public class UserService implements IUserService{
 		return tr.findAll();
 	}
 
-	/*
-	 * public String Renouvellement(long idu,long idt) { User u =
-	 * ur.findById(idu).orElseThrow(); Telephone t = tr.findById(idt).orElseThrow();
-	 * if(u.getUserTelephone().getTelephone().getEtat()=="Ecran Cassé" ||
-	 * u.getUserTelephone().getTelephone().getEtat()=="Rayé") {
-	 * tr.delete(u.getUserTelephone().getTelephone());
-	 * u.getUserTelephone().setTelephone(t); t.getUserTelephone().setUser(u); return
-	 * "Telephone Renouveller"; } return "Telephone neuf"; }
-	 */
 
 	@Override
 	public List<Abonnement> abonnements() {
@@ -156,21 +227,29 @@ public class UserService implements IUserService{
 		return ur.findAll();
 	}
 
-	@Override
-	public String AffecterTele(Long iduser, Long idtel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
 
 	@Override
 	public Optional<User> findUserById(Long id) {
 		return ur.findById(id);
 	}
 
+	
+	@Override
+	public void deleteAbonnementById(Long u) {
+		ar.deleteById(u);
+	}
 
+	@Override
+	public Abonnement UpdateAbonnement(Abonnement t) {
+		Abonnement ab = ar.findById(t.getId()).orElseThrow();
+		ab.setNom(t.getNom());
+		ab.setMontant(t.getMontant());
+		ab.setRemise(t.getRemise());
+		return ar.save(ab);
+	}
+
+	
+	
 
 	
 	

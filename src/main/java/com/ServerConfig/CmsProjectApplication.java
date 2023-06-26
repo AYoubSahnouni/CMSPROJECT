@@ -17,8 +17,7 @@ public class CmsProjectApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-//		User u = new User("AS5559","azerty");
-//		ur.addUser(u);
+
 	}
 
 }

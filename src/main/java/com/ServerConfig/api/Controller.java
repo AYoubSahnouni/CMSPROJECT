@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,33 @@ public class Controller {
 	IUserService iu;
 	
 	
+	
+	
+	@PostMapping("/addabonnement")
+	public Abonnement addAbonnement(@RequestBody Abonnement u) {
+		return iu.addAbonnement(u);
+	}
+	
+	@PutMapping("/updateabonnement")
+	public Abonnement UpdateAbonnement(@RequestBody Abonnement t) {
+		return iu.UpdateAbonnement(t);
+	}
+	
+	@DeleteMapping("/deleteabonnement/{id}")
+	public void deleteAbonnementById(@PathVariable("id") Long u) {
+		iu.deleteAbonnementById(u);
+	}
+	
 	@PutMapping("/update")
-	public User UpdatePhone(@RequestBody User user) {
-		return iu.UpdatePhone(user);
+	public User UpdateUser(@RequestBody User user) {
+		return iu.UpdateUser(user);
 	}
 
+	@PutMapping("/updatephone")
+	public Telephone UpdatePhone(@RequestBody Telephone tele) {
+		return iu.UpdatePhone(tele);
+	}
+	
 	@GetMapping("/user/{id}")
 	public Optional<User> getuserbyid(@PathVariable Long id){
 		return iu.findUserById(id);
@@ -45,8 +68,8 @@ public class Controller {
 	}
 	
 	@GetMapping("/login")
-	public User login(@RequestParam(value = "matricule") String matricule, @RequestParam(value = "password") String password) {
-		return iu.login(matricule, password);
+	public ResponseEntity<User> login(@RequestParam(value = "matricule") String matricule, @RequestParam(value = "password") String password) {
+		return iu.findByMatriculeAndPassword(matricule, password);
 	}
 
 	
@@ -96,5 +119,10 @@ public class Controller {
     public List<Telephone> findTelephoneByUserAffectation(){
     		return iu.findTelephoneByUserAffectation();
     }
+ 
     
+    @GetMapping("/userabonnement")
+    public List<User> findUserwithAbonnements(){
+    	return iu.findUserwithAbonnements();
+    }
 }
