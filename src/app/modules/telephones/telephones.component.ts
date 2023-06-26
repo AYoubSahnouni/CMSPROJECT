@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Telephone } from 'src/app/model/telephone';
 import { TelephoneService } from 'src/app/service/telephone.service';
 import { TeleAddEditComponent } from '../tele-add-edit/tele-add-edit.component';
+import { UpdatephoneComponent } from '../updatephone/updatephone.component';
 
 @Component({
   selector: 'app-telephones',
@@ -64,9 +65,9 @@ export class TelephonesComponent {
     });
   }
 
-  openEditForm(data: any) {
-    const dialogRef = this._dialog.open(TeleAddEditComponent, {
-      data,
+  openEditForm(tele: any) {
+    const dialogRef = this._dialog.open(UpdatephoneComponent, {
+      data: {telephone : tele}
     });
 
     dialogRef.afterClosed().subscribe({

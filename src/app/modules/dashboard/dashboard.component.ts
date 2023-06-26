@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { EmployeService } from 'src/app/service/employe.service';
+import * as XLSX from 'xlsx';
+
 
 export interface PeriodicElement {
   name: string;
@@ -16,29 +19,38 @@ export interface PeriodicElement {
 })
 export class DashboardComponent {
 
-  ELEMENT_DATA: PeriodicElement[] = [
-    {id: 1, name: 'Ayoub Sahnouni', Direction: 'IT', telephone: 'S21'},
-    {id: 2, name: 'Amine Mohammed', Direction: 'Comptabilité', telephone: 'M51'},
-    {id: 3, name: 'Hicham Labrok', Direction: 'IT', telephone: 'M51'},
-    {id: 4, name: 'Ali Bejjaji', Direction: 'Marketing', telephone: 'M51'},
-    {id: 5, name: 'Safae Sourouri', Direction: 'RH', telephone: 'A13'},
-    {id: 6, name: 'Khalid Hachouch', Direction: 'Finance', telephone: 'S21'},
-    {id: 7, name: 'Hiba Benaissa', Direction: 'RH', telephone: 'M51'},
-    {id: 8, name: 'Karim Moutawafik', Direction: 'Comptabilité', telephone: 'A13'},
-    {id: 9, name: 'Ayoub Tijani', Direction: 'Finance', telephone: 'A13'},
-    {id: 10, name: 'Salah Zafati', Direction: 'Marketing', telephone: 'M51'},
-    {id: 11, name: 'Ibrahim Bourazgi', Direction: 'IT', telephone: 'S21'},
-    {id: 12, name: 'Nacer lachhab', Direction: 'IT', telephone: 'S21'},
-    {id: 13, name: 'Mouad Chahid', Direction: 'Comptabilité', telephone: 'A13'}
-  ];
+  ListEmploye: any;
+  nombre: any;
 
-  displayedColumns: string[] = ['id', 'name', 'Direction', 'telephone'];
-  dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
+  constructor(private service: EmployeService){
+
+  }
+
+  telechargerExcel(){
+      let element = document.getElementById('ex');
+      const ws : XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+      const wb : XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb,ws,'Sheet1');
+      XLSX.writeFile(wb,'Tableaux.xlsx');
+  }
+
+  all(): any{
+    this.service.getUsers().subscribe(data=> {
+      this.ListEmploye = data;
+      this.dataSource = new MatTableDataSource(this.ListEmploye);
+      this.nombre = this.ListEmploye.length;
+      console.log('list of users', this.ListEmploye);
+    });
+  }
+
+  displayedColumns: string[] = ['id', 'nom', 'poste','siege','telephone','abonnement'];
+  dataSource = new MatTableDataSource<PeriodicElement>(this.all());
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
 
   ngOnInit() {
+    this.all();
     this.dataSource.paginator = this.paginator;
   }
 }

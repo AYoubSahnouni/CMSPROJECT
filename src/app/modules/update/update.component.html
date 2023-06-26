@@ -28,19 +28,32 @@
           <mat-form-field appearance="outline">
             <mat-label>Telephone</mat-label>
             <mat-select value="Selectionner telephone" formControlName="id">
-              <mat-option selected [value]="data.employee.telephone.id">
-                  {{ data.employee.telephone.id + ' : ' + data.employee.telephone.name }}
+              <mat-option *ngIf="option" selected [value]="data.employee.telephone.id">
+                  {{ data.employee.telephone.code + ' : ' + data.employee.telephone.name }}
               </mat-option>
               <mat-option *ngFor="let telephone of telephones" [value]="telephone.id">
-                {{ telephone.id + ' : ' + telephone.name }}
+                {{ telephone.code + ' : ' + telephone.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <mat-form-field class="outline">
           <mat-label>Phone</mat-label>
-          <input matInput mask="(000) 000-0000" placeholder="Ex. (000) 000-0000" formControlName="number">
+          <input matInput mask="(000) 000-0000" placeholder="Ex. (000) 000-0000" formControlName="number" value="employee.number">
         </mat-form-field>
+        <div formGroupName="abonnement">
+          <mat-form-field appearance="outline">
+            <mat-label>Abonnement</mat-label>
+            <mat-select value="Selectionner abonnement" formControlName="id">
+              <mat-option *ngIf="option1" selected [value]="data.employee.abonnement.id">
+                  {{ data.employee.abonnement.nom }}
+              </mat-option>
+              <mat-option *ngFor="let ab of abonnements" [value]="ab.id">
+                {{ ab.nom }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
       <div mat-dialog-actions class="action">
         <button mat-raised-button mat-dialog-close>

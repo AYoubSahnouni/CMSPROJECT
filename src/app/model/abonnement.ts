@@ -1,7 +1,6 @@
 export class Abonnement {
   id!: number;
-  name!: String;
+  nom!: String;
   remise!: number;
   montant!: number;
-  employe_id!: number;
 }

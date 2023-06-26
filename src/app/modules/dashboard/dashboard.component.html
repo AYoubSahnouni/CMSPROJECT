@@ -24,10 +24,11 @@
 
 <br>
 
+<button mat-raised-button type="submit" color="primary" (click)="telechargerExcel()">Telecharger</button>
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
   <div fxFlex="60">
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource">
+      <table id="ex"  mat-table [dataSource]="dataSource">
 
         <!-- Position Column -->
         <ng-container matColumnDef="id">
@@ -36,23 +37,32 @@
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="nom">
           <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="Direction">
-          <th mat-header-cell *matHeaderCellDef> Direction </th>
-          <td mat-cell *matCellDef="let element"> {{element.Direction}} </td>
+        <ng-container matColumnDef="poste">
+          <th mat-header-cell *matHeaderCellDef> Poste </th>
+          <td mat-cell *matCellDef="let element"> {{element.poste}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="siege">
+          <th mat-header-cell *matHeaderCellDef> Siege </th>
+          <td mat-cell *matCellDef="let element"> {{element.siege}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="telephone">
           <th mat-header-cell *matHeaderCellDef> Telephones </th>
-          <td mat-cell *matCellDef="let element"> {{element.telephone}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.telephone?.name}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="abonnement">
+          <th mat-header-cell *matHeaderCellDef> Abonnement </th>
+          <td mat-cell *matCellDef="let element"> {{element.abonnement?.nom}} </td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

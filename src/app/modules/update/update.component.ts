@@ -16,9 +16,11 @@ export class UpdateComponent {
   empForm: FormGroup;
 
   telephones!: any;
+  abonnements: any;
+  option1: boolean = true;
 
-  constructor(private route: ActivatedRoute,private TeleService: TelephoneService ,private userService : EmployeService,private fb: FormBuilder,    private dialogRef: MatDialogRef<UpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,){
+  constructor(private TeleService: TelephoneService ,private userService : EmployeService,private fb: FormBuilder,    private dialogRef: MatDialogRef<UpdateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any){
     this.empForm = this.fb.group({
       id:'',
       matricule:'',
@@ -28,6 +30,9 @@ export class UpdateComponent {
       siege:'',
       number:'',
       telephone: this.fb.group({
+        id:''
+      }),
+      abonnement: this.fb.group({
         id:''
       })
     })
@@ -56,16 +61,25 @@ export class UpdateComponent {
           this.dialogRef.close(user); // Pass the user data to the parent component
         },
         error => {
-          console.error('Erreur lors de l\'ajout de l\'utilisateur :', error);
+          console.error('Erreur lors de modification de l\'utilisateur :', error);
         }
       );
     }
   }
 
+  option: boolean = true;
 
+  fetchabonnement(){
+    this.userService.fetchabonnement().subscribe(data=> {
+      this.abonnements = data.map((item: any) => item);
+      console.log('list of abonnements', this.abonnements);
+    });
+  }
 
   ngOnInit(){
     this.fetchtele();
+    this.fetchabonnement();
+    console.log(this.data.employee)
     this.empForm.patchValue({
       id:this.data.employee.id,
       matricule: this.data.employee.matricule,
@@ -74,9 +88,21 @@ export class UpdateComponent {
       poste:this.data.employee.poste,
       siege:this.data.employee.siege,
       number:this.data.employee.number,
-      telephone:this.data.employee.telephone
+      telephone:this.data.employee.telephone,
+      abonnement:this.data.employee.abonnement
     });
-
+      if(this.data.employee.telephone!=null){
+          this.option = true;
+      }
+      else{
+          this.option = false;
+      }
+      if(this.data.employee.abonnement!=null){
+        this.option1 = true;
+      }
+      else{
+          this.option1 = false;
+      }
   }
 
 }

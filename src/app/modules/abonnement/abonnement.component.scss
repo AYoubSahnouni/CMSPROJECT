@@ -1,17 +1,45 @@
+
+div {
+
+  margin-top: 5%;
+  width: 100%;
+
+}
+
+p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 79%;
+}
+
+.abonnement{
+  margin-left: 69%;
+}
+
 h1 {
   margin-left: 15px;
   margin-top: 5px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.abonnement{
-  margin-left: 72%;
+.button {
+  margin-top: 15%;
 }
-.table{
+.button1 {
+
+  margin-left: 20%;
+  display: inline;
+}
+.button2 {
   margin-left: 10%;
-  margin-top: 8%;
-  width: 80%;
+  display: inline;
 }
 
-#button{
-  margin-top: 14%;
+.main-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1248px;
+}
+
+.mat-elevation-z8{
+  margin-bottom: 10%;
+  margin-left: 4%;
 }

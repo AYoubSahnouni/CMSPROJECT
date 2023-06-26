@@ -30,9 +30,9 @@ export class LoginComponent {
 
   proceedlogin() {
     this.user = {"matricule":this.loginform.get('matricule')?.value,"password":this.loginform.get('password')?.value};
-    console.log(this.user);
     this.service.login(this.user).subscribe(data => {
       this.u = data;
+      sessionStorage.setItem('user', JSON.stringify(data));
       console.log(this.u);
       alert("login Successfully")
       this.router.navigate(['/dashboard'])

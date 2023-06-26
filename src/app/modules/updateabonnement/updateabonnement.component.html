@@ -1,5 +1,5 @@
 <div class="head" mat-dialog-title>
-  <h1>Ajouter Telephone</h1>
+  <h1>Modifier Telephone</h1>
 </div>
 <form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
     <div mat-dialog-content class="content">
@@ -8,6 +8,9 @@
           <mat-form-field appearance="outline">
             <mat-label>Nom Abonnement</mat-label>
             <mat-select formControlName="nom">
+              <mat-option selected [value]="data.abonnement.nom">
+                {{data.abonnement.nom}}
+              </mat-option>
               <mat-option selected value="Orange">
                 Orange
               </mat-option>
@@ -22,11 +25,11 @@
         </div>
         <mat-form-field class="outline">
           <mat-label>Montant</mat-label>
-          <input matInput  placeholder="Montant" formControlName="montant">
+          <input matInput  placeholder="Montant" formControlName="montant" value="abonnement.montant">
         </mat-form-field>
         <mat-form-field class="outline">
           <mat-label>Remise</mat-label>
-          <input matInput placeholder="Code" formControlName="remise">
+          <input matInput placeholder="Remise" formControlName="remise" value="abonnement.remise">
         </mat-form-field>
       </div>
       <div mat-dialog-actions class="action">

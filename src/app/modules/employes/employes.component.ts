@@ -21,7 +21,8 @@ export class EmployesComponent {
     console.log(event)
     var item = this.ListEmploye.filter( item =>
         item.number.toString().toLowerCase().includes(event.toLowerCase()) ||
-        item.telephone?.marque.toString().toLowerCase().includes(event.toLowerCase()) ||
+        item.telephone?.name.toString().toLowerCase().includes(event.toLowerCase()) ||
+        item.abonnement?.nom.toString().toLowerCase().includes(event.toLowerCase()) ||
         item.nom.toLowerCase().includes(event.toLowerCase()) ||
         item.prenom.toLowerCase().includes(event.toLowerCase()) ||
         item.poste.toLowerCase().includes(event.toLowerCase()) ||
@@ -42,7 +43,7 @@ export class EmployesComponent {
 
   boutonsAffiches: boolean = true;
 
-  displayedColumns: string[] = ["id", "matricule", "nom", "prenom", "poste", "siege", "telephone", "number", "action"];
+  displayedColumns: string[] = ["id", "matricule", "nom", "prenom", "poste", "siege", "telephone", "number","abonnement", "action"];
 
   afficherAvecAffectation() {
     this.afficherAffectation = true;

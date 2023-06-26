@@ -1,3 +1,4 @@
+import { Abonnement } from "./abonnement";
 import { Telephone } from "./telephone";
 
 export class User {
@@ -10,4 +11,5 @@ export class User {
   siege!:string;
   number!:number;
   telephone!: Telephone;
+  abonnement!: Abonnement;
 }

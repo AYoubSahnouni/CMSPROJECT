@@ -2,19 +2,12 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet"/>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
 
-<div class="col-md-9 col-md-push-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-                <form action="#" method="get" id="searchForm" class="input-group">
-                    <input type="text" (keyup)="rechercher()"  [(ngModel)]="filterValue" class="form-control" name="x" placeholder="Rechercher...">
+
+    <div class="d-flex justify-content-start" style="margin-left: 50px;">
+                    <input style="width: 500px;" type="text" (keyup)="rechercher()"  [(ngModel)]="filterValue" class="form-control" name="x" placeholder="Rechercher...">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit" (click)="rechercher()">
                            <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
-                </form><!-- end form -->
-            </div><!-- end col-xs-8 -->
-        </div><!-- end row -->
     </div><!-- end container -->
-</div><!-- end col-md-9 -->

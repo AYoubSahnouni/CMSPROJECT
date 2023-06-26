@@ -1,0 +1,58 @@
+<div class="head" mat-dialog-title>
+  <h1>Modifier Telephone</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field class="outline">
+          <mat-label>Name</mat-label>
+          <input matInput  placeholder="Nom" formControlName="name" [value]="data.telephone.name">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Marque</mat-label>
+          <input matInput  placeholder="Marque" formControlName="marque" value="telephone.marque">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Code</mat-label>
+          <input matInput placeholder="Code" formControlName="code" value="telephone.code">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Model</mat-label>
+          <input matInput  placeholder="Model" formControlName="model" value="telephone.model">
+        </mat-form-field>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Etat</mat-label>
+            <mat-select formControlName="etat">
+              <mat-option selected [value]="data.telephone.etat">
+                {{data.telephone.etat}}
+              </mat-option>
+              <mat-option selected value="Bon etat">
+                Bon etat
+              </mat-option>
+              <mat-option selected value="Etat moyen">
+                Etat Moyen
+              </mat-option>
+              <mat-option selected value="Reconditionné">
+                Reconditionné
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="outline">
+          <mat-label>Montant</mat-label>
+          <input matInput placeholder="Montant" formControlName="montant" value="telephone.montant">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Date D'acquisition</mat-label>
+          <input matInput type="date" placeholder="Date" formControlName="date_acquisition" [value]="data.telephone.date_acquisition">
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button mat-dialog-close color="warn">
+          close
+        </button>
+        <button mat-raised-button type="submit" color="primary" >Save</button>
+      </div>
+    </div>
+</form>

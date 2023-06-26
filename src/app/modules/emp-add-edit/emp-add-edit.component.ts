@@ -13,6 +13,7 @@ import { TelephoneService } from 'src/app/service/telephone.service';
 })
 export class EmpAddEditComponent {
 
+  abonnements!:any;
   telephones!: any;
   empForm: FormGroup;
   router: any;
@@ -27,6 +28,9 @@ export class EmpAddEditComponent {
         poste:'',
         siege:'',
         number:'',
+        abonnement: this.fb.group({
+          id:''
+        }),
         telephone: this.fb.group({
           id:''
         })
@@ -39,6 +43,14 @@ export class EmpAddEditComponent {
       console.log('list of telephones', this.telephones);
     });
   }
+
+
+  fetchabonnement(){
+    this.userService.fetchabonnement().subscribe(data=> {
+      this.abonnements = data.map((item: any) => item);
+      console.log('list of abonnements', this.abonnements);
+    });
+  }
   close() {
     this.dialogRef.close();
   }
@@ -46,13 +58,11 @@ export class EmpAddEditComponent {
   onFormSubmit() {
     if (this.empForm.valid) {
       console.log(this.empForm.value);
-      const user: User = this.empForm.value;
-      console.log(user);
-      this.userService.addUser(user).subscribe(
+      this.userService.addUser(this.empForm.value).subscribe(
         data => {
           console.log('Utilisateur ajouté avec succès :', data);
           this.empForm.reset();
-          this.dialogRef.close(user); // Pass the user data to the parent component
+          this.dialogRef.close(this.empForm.value); // Pass the user data to the parent component
         },
         error => {
           console.error('Erreur lors de l\'ajout de l\'utilisateur :', error);
@@ -65,5 +75,6 @@ export class EmpAddEditComponent {
 
   ngOnInit() {
     this.fetchtele();
+    this.fetchabonnement();
   }
 }

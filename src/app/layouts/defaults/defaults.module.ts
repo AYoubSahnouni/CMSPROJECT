@@ -29,6 +29,8 @@ import { SearchbarComponent } from 'src/app/shared/widgets/searchbar/searchbar.c
 import { UpdateComponent } from 'src/app/modules/update/update.component';
 import { TeleAddEditComponent } from 'src/app/modules/tele-add-edit/tele-add-edit.component';
 import { AbonnementAddEditComponent } from 'src/app/modules/abonnement-add-edit/abonnement-add-edit.component';
+import { UpdatephoneComponent } from 'src/app/modules/updatephone/updatephone.component';
+import { UpdateabonnementComponent } from 'src/app/modules/updateabonnement/updateabonnement.component';
 @NgModule({
   declarations: [
     DefaultsComponent,
@@ -43,7 +45,9 @@ import { AbonnementAddEditComponent } from 'src/app/modules/abonnement-add-edit/
     EmpAddEditComponent,
     UpdateComponent,
     TeleAddEditComponent,
-    AbonnementAddEditComponent
+    AbonnementAddEditComponent,
+    UpdateabonnementComponent,
+    UpdatephoneComponent
   ],
   imports: [
     CommonModule,

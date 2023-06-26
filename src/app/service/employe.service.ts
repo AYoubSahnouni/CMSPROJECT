@@ -12,6 +12,10 @@ export class EmployeService {
 
 
 
+  fetchabonnement(): Observable<any>{
+    return this.httpClient.get("http://localhost:8080/abonnements");
+  }
+
   update(data: User){
     return this.httpClient.put<User>("http://localhost:8080/update",data)
   }

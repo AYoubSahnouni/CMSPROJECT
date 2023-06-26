@@ -11,11 +11,17 @@ export class TelephoneService {
   constructor(private httpClient : HttpClient) { }
 
 
+
+
+
   deleteTele(id: number): Observable<any>{
     return this.httpClient.delete(`http://localhost:8080/deleteTele/${id}`)
   }
 
 
+  update(data: Telephone){
+    return this.httpClient.put<Telephone>("http://localhost:8080/updatephone",data)
+  }
 
   addPhone(data: Telephone): Observable<any>{
     return this.httpClient.post<Telephone>("http://localhost:8080/AddPhone",data)
