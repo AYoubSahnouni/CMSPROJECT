@@ -36,6 +36,7 @@ export class AbonnementComponent {
     var item = this.ListAll.filter( item =>
         item.nom.toLowerCase().includes(event.toLowerCase()) ||
         item.montant.toString().toLowerCase().includes(event.toLowerCase()) ||
+        item.forfeit.toString().toLowerCase().includes(event.toLowerCase()) ||
         item.remise.toString().toLowerCase().includes(event.toLowerCase())
     )
     this.dataSource = new MatTableDataSource(item);
@@ -112,7 +113,7 @@ export class AbonnementComponent {
   }
 
 
-  displayedColumns: string[] = ["id","name","montant","remise","naffectation","action"];
+  displayedColumns: string[] = ["id","name","forfeit","montant","remise","naffectation","action"];
 
 
   @ViewChild(MatPaginator, { static: true })

@@ -18,6 +18,7 @@ export class UpdateabonnementComponent {
       this.empForm = this.fb.group({
         id:'',
         nom:'',
+        forfeit:'',
         montant:'',
         remise:''
       })
@@ -49,6 +50,7 @@ export class UpdateabonnementComponent {
     this.empForm.patchValue({
       id:this.data.abonnement.id,
       nom: this.data.abonnement.nom,
+      forfeit: this.data.abonnement.forfeit,
       montant:this.data.abonnement.montant,
       remise:this.data.abonnement.remise,
     });

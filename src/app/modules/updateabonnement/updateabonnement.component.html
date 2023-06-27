@@ -23,6 +23,19 @@
             </mat-select>
           </mat-form-field>
         </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Forfeit</mat-label>
+            <mat-select formControlName="forfeit">
+              <mat-option selected [value]="data.abonnement.forfeit">
+                {{data.abonnement.forfeit}}
+              </mat-option>
+              <mat-option selected value="Illimité">
+                Illimité
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <mat-form-field class="outline">
           <mat-label>Montant</mat-label>
           <input matInput  placeholder="Montant" formControlName="montant" value="abonnement.montant">

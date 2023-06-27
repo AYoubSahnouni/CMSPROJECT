@@ -17,6 +17,7 @@ export class AbonnementAddEditComponent {
     @Inject(MAT_DIALOG_DATA) private data: any){
     this.empForm = this.fb.group({
       nom:'',
+      forfeit:'',
       montant: '',
       remise:'',
     })

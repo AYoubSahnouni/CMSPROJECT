@@ -20,13 +20,23 @@
             </mat-select>
           </mat-form-field>
         </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Forfeit</mat-label>
+            <mat-select formControlName="forfeit">
+              <mat-option selected value="Illimité">
+                Illimité
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <mat-form-field class="outline">
           <mat-label>Montant</mat-label>
           <input matInput  placeholder="Montant" formControlName="montant">
         </mat-form-field>
         <mat-form-field class="outline">
           <mat-label>Remise</mat-label>
-          <input matInput placeholder="Code" formControlName="remise">
+          <input matInput placeholder="remise" formControlName="remise">
         </mat-form-field>
       </div>
       <div mat-dialog-actions class="action">

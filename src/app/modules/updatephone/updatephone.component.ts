@@ -20,9 +20,10 @@ export class UpdatephoneComponent {
       name:'',
       marque:'',
       model:'',
-      code:'',
+      numero_serie:'',
       etat:'',
       montant:'',
+      numero_facture:'',
       date_acquisition: ''
     })
   }
@@ -53,7 +54,8 @@ export class UpdatephoneComponent {
       name: this.data.telephone.name,
       marque:this.data.telephone.marque,
       model:this.data.telephone.model,
-      code:this.data.telephone.code,
+      numero_serie:this.data.telephone.numero_serie,
+      numero_facture:this.data.telephone.numero_facture,
       etat:this.data.telephone.etat,
       montant:this.data.telephone.montant,
       date_acquisition:this.data.telephone.date_acquisition

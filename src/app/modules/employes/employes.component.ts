@@ -23,10 +23,11 @@ export class EmployesComponent {
         item.number.toString().toLowerCase().includes(event.toLowerCase()) ||
         item.telephone?.name.toString().toLowerCase().includes(event.toLowerCase()) ||
         item.abonnement?.nom.toString().toLowerCase().includes(event.toLowerCase()) ||
+        item.abonnement?.forfeit.toLowerCase().includes(event.toLowerCase()) ||
         item.nom.toLowerCase().includes(event.toLowerCase()) ||
         item.prenom.toLowerCase().includes(event.toLowerCase()) ||
         item.poste.toLowerCase().includes(event.toLowerCase()) ||
-        item.siege.toLowerCase().includes(event.toLowerCase()) ||
+        item.affectation.toLowerCase().includes(event.toLowerCase()) ||
         item.matricule.toLowerCase().includes(event.toLowerCase())
     )
     this.dataSource = new MatTableDataSource(item);
@@ -43,7 +44,7 @@ export class EmployesComponent {
 
   boutonsAffiches: boolean = true;
 
-  displayedColumns: string[] = ["id", "matricule", "nom", "prenom", "poste", "siege", "telephone", "number","abonnement", "action"];
+  displayedColumns: string[] = ["id", "matricule", "nom", "prenom", "poste", "affectation", "telephone", "number","abonnement", "action"];
 
   afficherAvecAffectation() {
     this.afficherAffectation = true;

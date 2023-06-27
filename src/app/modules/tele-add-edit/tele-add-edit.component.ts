@@ -17,10 +17,11 @@ export class TeleAddEditComponent {
     this.empForm = this.fb.group({
       name:'',
       marque: '',
-      code:'',
+      numero_serie:'',
       model: '',
       etat:'',
       montant:'',
+      numero_facture:'',
       date_acquisition:''
     })
 }

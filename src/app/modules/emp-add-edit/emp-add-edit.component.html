@@ -20,30 +20,45 @@
           <mat-label>Poste</mat-label>
           <input matInput  placeholder="Poste" formControlName="poste">
         </mat-form-field>
-        <mat-form-field class="outline">
-          <mat-label>Siege</mat-label>
-          <input matInput placeholder="Siege" formControlName="siege">
-        </mat-form-field>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Affectation</mat-label>
+            <mat-select formControlName="affectation">
+              <mat-option selected value="Siege">
+                Siege
+              </mat-option>
+              <mat-option selected value="Attijari">
+                Attijari
+              </mat-option>
+              <mat-option selected value="RMC">
+                RMC
+              </mat-option>
+              <mat-option selected value="ALBH">
+                ALBH
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <div formGroupName="telephone">
           <mat-form-field appearance="outline">
             <mat-label>Telephone</mat-label>
             <mat-select value="Selectionner telephone" formControlName="id">
               <mat-option *ngFor="let telephone of telephones" [value]="telephone.id">
-                {{ telephone.id + ' : ' + telephone.name }}
+                {{ telephone.numero_serie + ' : ' + telephone.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <mat-form-field class="outline">
           <mat-label>Phone</mat-label>
-          <input matInput mask="(000) 000-0000" placeholder="Ex. (000) 000-0000" formControlName="number">
+          <input matInput  placeholder="Ex. (000) 000-0000" formControlName="number">
         </mat-form-field>
         <div formGroupName="abonnement">
           <mat-form-field appearance="outline">
             <mat-label>Abonnement</mat-label>
             <mat-select value="Selectionner abonnement" formControlName="id">
               <mat-option *ngFor="let abonnement of abonnements" [value]="abonnement.id">
-                {{ abonnement.id + ' : ' + abonnement.nom }}
+                {{ abonnement.nom + ' : ' + abonnement.forfeit }}
               </mat-option>
             </mat-select>
           </mat-form-field>

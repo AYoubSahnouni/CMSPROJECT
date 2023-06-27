@@ -27,7 +27,7 @@ export class UpdateComponent {
       nom:'',
       prenom:'',
       poste:'',
-      siege:'',
+      affectation:'',
       number:'',
       telephone: this.fb.group({
         id:''
@@ -86,7 +86,7 @@ export class UpdateComponent {
       nom:this.data.employee.nom,
       prenom:this.data.employee.prenom,
       poste:this.data.employee.poste,
-      siege:this.data.employee.siege,
+      affectation:this.data.employee.affectation,
       number:this.data.employee.number,
       telephone:this.data.employee.telephone,
       abonnement:this.data.employee.abonnement

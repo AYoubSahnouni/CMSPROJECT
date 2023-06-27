@@ -13,8 +13,8 @@
           <input matInput  placeholder="Marque" formControlName="marque" value="telephone.marque">
         </mat-form-field>
         <mat-form-field class="outline">
-          <mat-label>Code</mat-label>
-          <input matInput placeholder="Code" formControlName="code" value="telephone.code">
+          <mat-label>No.Serie</mat-label>
+          <input matInput placeholder="Code" formControlName="numero_serie" value="telephone.numero.serie">
         </mat-form-field>
         <mat-form-field class="outline">
           <mat-label>Model</mat-label>
@@ -28,7 +28,10 @@
                 {{data.telephone.etat}}
               </mat-option>
               <mat-option selected value="Bon etat">
-                Bon etat
+                Neuf
+              </mat-option>
+              <mat-option selected value="Etat moyen">
+                Bon Etat
               </mat-option>
               <mat-option selected value="Etat moyen">
                 Etat Moyen
@@ -36,12 +39,19 @@
               <mat-option selected value="Reconditionné">
                 Reconditionné
               </mat-option>
+              <mat-option selected value="Reconditionné">
+                Hors Service
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <mat-form-field class="outline">
           <mat-label>Montant HT</mat-label>
           <input matInput placeholder="Montant" formControlName="montant" value="telephone.montant">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>No.Facture</mat-label>
+          <input matInput placeholder="Numero facture" formControlName="numero_facture" value="telephone.numero_facture">
         </mat-form-field>
         <mat-form-field class="outline">
           <mat-label>Date D'acquisition</mat-label>

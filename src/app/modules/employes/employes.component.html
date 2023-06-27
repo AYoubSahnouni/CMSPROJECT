@@ -1,14 +1,15 @@
 <h1>Liste des Employés</h1>
 <div class="search">
-  <app-searchbar (SendSearchtoEmploye)="searching($event)"></app-searchbar>
-</div>
-{{ search}}
-<div class="abonnement">
-  <section>
-    <div class="butt" class="example-button-row">
-      <button mat-raised-button color="primary" (click)="openForm()">Ajouter Employé</button>
+  <div>
+    <div>
+      <app-searchbar (SendSearchtoEmploye)="searching($event)"></app-searchbar>
     </div>
-  </section>
+    <div>
+      <section>
+        <button mat-raised-button color="primary" (click)="openForm()">Ajouter Employé</button>
+      </section>
+    </div>
+  </div>
 </div>
 <div class="button" *ngIf="boutonsAffiches">
   <div class="button1">
@@ -59,9 +60,9 @@
         <td mat-cell *matCellDef="let element"> {{element.telephone?.name ?? 'non disponible'}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="siege">
-        <th mat-header-cell *matHeaderCellDef> Siège </th>
-        <td mat-cell *matCellDef="let element"> {{element.siege}} </td>
+      <ng-container matColumnDef="affectation">
+        <th mat-header-cell *matHeaderCellDef> Affectation </th>
+        <td mat-cell *matCellDef="let element"> {{element.affectation}} </td>
       </ng-container>
 
       <ng-container matColumnDef="number">

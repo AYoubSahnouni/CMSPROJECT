@@ -43,7 +43,7 @@ export class DashboardComponent {
     });
   }
 
-  displayedColumns: string[] = ['id', 'nom', 'poste','siege','telephone','abonnement'];
+  displayedColumns: string[] = ['id', 'nom', 'prenom' , 'matricule','poste','affectation','telephone','montant','abonnement','montant_abonnement'];
   dataSource = new MatTableDataSource<PeriodicElement>(this.all());
 
   @ViewChild(MatPaginator, { static: true })

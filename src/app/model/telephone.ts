@@ -3,13 +3,14 @@
 export class Telephone {
 
   id!: number;
-  name!: String;
-  code!: String;
-  marque!: String;
-  model!: String;
-  etat!: String;
+  name!: string;
+  numero_serie!: string;
+  marque!: string;
+  model!: string;
+  etat!: string;
   montant!: number;
   date_acquisition!: Date;
+  numero_facture!: number;
 
 
 

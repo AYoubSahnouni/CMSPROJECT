@@ -8,8 +8,9 @@ export class User {
   prenom!:string;
   password!:string;
   poste!:string;
-  siege!:string;
+  affectation!:string;
   number!:number;
   telephone!: Telephone;
   abonnement!: Abonnement;
+
 }

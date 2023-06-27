@@ -26,7 +26,7 @@ export class EmpAddEditComponent {
         nom:'',
         prenom:'',
         poste:'',
-        siege:'',
+        affectation:'',
         number:'',
         abonnement: this.fb.group({
           id:''

@@ -1,6 +1,7 @@
 export class Abonnement {
   id!: number;
-  nom!: String;
+  nom!: string;
   remise!: number;
   montant!: number;
+  forfeit!: string;
 }

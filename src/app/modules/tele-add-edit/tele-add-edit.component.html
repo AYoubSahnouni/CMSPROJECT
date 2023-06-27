@@ -13,8 +13,8 @@
           <input matInput  placeholder="Marque" formControlName="marque">
         </mat-form-field>
         <mat-form-field class="outline">
-          <mat-label>Code</mat-label>
-          <input matInput placeholder="Code" formControlName="code">
+          <mat-label>No.Serie</mat-label>
+          <input matInput placeholder="Numero Serie" formControlName="numero_serie">
         </mat-form-field>
         <mat-form-field class="outline">
           <mat-label>Model</mat-label>
@@ -24,8 +24,11 @@
           <mat-form-field appearance="outline">
             <mat-label>Etat</mat-label>
             <mat-select formControlName="etat">
-              <mat-option selected value="Bon etat">
-                Bon etat
+              <mat-option selected value="Neuf">
+                Neuf
+              </mat-option>
+              <mat-option selected value="Bon Etat">
+                Bon Etat
               </mat-option>
               <mat-option selected value="Etat moyen">
                 Etat Moyen
@@ -39,6 +42,10 @@
         <mat-form-field class="outline">
           <mat-label>Montant</mat-label>
           <input matInput placeholder="Montant" formControlName="montant">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>No.Facture</mat-label>
+          <input matInput placeholder="Numero facture" formControlName="numero_facture" value="telephone.numero_facture">
         </mat-form-field>
         <mat-form-field class="outline">
           <mat-label>Date D'acquisition</mat-label>

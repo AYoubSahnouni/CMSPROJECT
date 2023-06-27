@@ -27,7 +27,8 @@ export class TelephonesComponent {
     var item = this.ListAll.filter( item =>
         item.marque.toLowerCase().includes(event.toLowerCase()) ||
         item.model.toLowerCase().includes(event.toLowerCase()) ||
-        item.code.toLowerCase().includes(event.toLowerCase()) ||
+        item.numero_serie.toLowerCase().includes(event.toLowerCase()) ||
+        item.numero_facture.toString().toLowerCase().includes(event.toLowerCase()) ||
         item.etat.toLowerCase().includes(event.toLowerCase()) ||
         item.montant.toString().toLowerCase().includes(event.toLowerCase()) ||
         item.name.toLowerCase().includes(event.toLowerCase())
@@ -90,7 +91,7 @@ export class TelephonesComponent {
   }
 
 
-  displayedColumns: string[] = ['id', 'name', 'Marque', 'code','model', 'etat', 'montant', 'date_acquisition',"action"];
+  displayedColumns: string[] = ['id', 'name', 'Marque', 'numero_serie','model', 'etat', 'montant','numero_facture','date_acquisition',"action"];
 
   @ViewChild(MatPaginator, { static: true })
   paginator!: MatPaginator;
