@@ -3,13 +3,8 @@ package com.ServerConfig.entities;
 
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,10 +34,10 @@ public class User {
 	private String nom;
 	private String prenom;
 	private String poste;
-	private String siege;
+	private String affectation;
 	private int number;
 	private String password;
-	private boolean affectation;		
+	private boolean active;		
 	@JsonManagedReference
 	@OneToOne
     @JoinTable(name = "user_telephone", 

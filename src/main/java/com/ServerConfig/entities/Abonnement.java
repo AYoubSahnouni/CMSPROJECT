@@ -32,6 +32,7 @@ public class Abonnement {
 	private String nom;
 	private int montant;
 	private int remise;
+	private String forfeit;
 	@JsonIgnore
 	@OneToMany(mappedBy = "abonnement")
 	private List<User> users;

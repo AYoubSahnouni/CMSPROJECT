@@ -51,8 +51,8 @@ public class UserService implements IUserService{
 		
 		System.out.println(u.getAbonnement()+"==================================");
 		
-		if(u.getTelephone() == null) {
-			u.setAffectation(false);
+		if(u.getTelephone() == null && u.getAbonnement() == null) {
+			u.setActive(false);
 			return ur.save(u);
 		}
 		else {
@@ -60,21 +60,23 @@ public class UserService implements IUserService{
 			Telephone t = tr.findById(u.getTelephone().getId()).orElse(null);
 			Abonnement a = ar.findById(u.getAbonnement().getId()).orElse(null);
 			
-			if(t == null || a == null ) {
+			if(t == null && a == null || t==null && a!=null) {
+				if(a!=null) {
+					u.setAbonnement(a);
+				}
+				else {
+					u.setAbonnement(null);
+				}
 				u.setTelephone(null);
-				u.setAbonnement(null);
-				u.setAffectation(false);
-				return ur.save(u);
-			}
-			else if(t.getUser() == null ) {
-				u.setTelephone(t);
-				t.setUser(u);
-				u.setAbonnement(a);
-				u.setAffectation(true);
+				u.setActive(false);
 				return ur.save(u);
 			}
 			else {
-				return null;
+				u.setTelephone(t);
+				t.setUser(u);
+				u.setAbonnement(a);
+				u.setActive(true);
+				return ur.save(u);
 			}
 		}
 	}
@@ -99,7 +101,7 @@ public class UserService implements IUserService{
 		List<User> listUsers = new ArrayList<User>();
 		for (User user : ur.findAll()) {
 			if(user.getPoste()!="Stagiaire") {
-				if(user.isAffectation()) {
+				if(user.isActive()) {
 					listUsers.add(user);
 				}
 			}
@@ -112,7 +114,7 @@ public class UserService implements IUserService{
 		List<User> listUserWithoutPhone = new ArrayList<User>();
 		for (User user : ur.findAll()) {
 			if(user.getPoste()!="Stagiaire") {
-				if(!user.isAffectation()) {
+				if(!user.isActive()) {
 					listUserWithoutPhone.add(user);
 				}
 			}
@@ -137,7 +139,7 @@ public class UserService implements IUserService{
 	public  List<Telephone> findTelephoneByUserAffectation(){
 		List<Telephone> t = new ArrayList<>();
 		for (Telephone telephone : tr.findUnaffectedTelephones()) {
-			if(telephone.getUser() == null || telephone.getUser().isAffectation()==false) {
+			if(telephone.getUser() == null || telephone.getUser().isActive()==false) {
 				t.add(telephone);
 			}
 		}
@@ -147,56 +149,58 @@ public class UserService implements IUserService{
 	
 	@Override
 	public User UpdateUser(User user) {
-		User u = ur.findById(user.getId()).orElseThrow();
-		if(u!=null && u.getTelephone()!=null || u!=null && u.getTelephone()==null) {
-			if(user.getTelephone() == null) {
-				user.setAffectation(false);
-			}else {
-				u.setAffectation(true);
-			}
-			Telephone tt = tr.findById(user.getTelephone().getId()).orElseThrow();
+		if(user.getTelephone()==null && user.getAbonnement()==null) {
+			user.setActive(false);
+			user.setAbonnement(null);
+			user.setTelephone(null);
+			return ur.save(user);
+		}
+		else {
+			Telephone t = tr.findById(user.getTelephone().getId()).orElse(null);
 			Abonnement a = ar.findById(user.getAbonnement().getId()).orElse(null);
-			if(tt == null || a==null) {			
-				u.setTelephone(null);
-				u.setMatricule(user.getMatricule());
-				u.setNom(user.getNom());
-				u.setPrenom(user.getPrenom());
-				u.setNumber(user.getNumber());
-				u.setPoste(user.getPoste());
-				u.setSiege(user.getSiege());
-				u.setAbonnement(null);
-				return ur.save(u);
+			if(t == null && a == null || t==null && a!=null || t!=null && a==null)  {
+				if(a!=null) {
+					user.setAbonnement(a);
+				}
+				else {
+					user.setAbonnement(null);
+				}
+				if(t==null) {
+					user.setTelephone(null);
+					user.setActive(false);
+				}
+				else {
+					user.setTelephone(t);
+					user.setActive(true);
+				}
+				user.setMatricule(user.getMatricule());
+				user.setNom(user.getNom());
+				user.setPrenom(user.getPrenom());
+				user.setPoste(user.getPoste());
+				user.setAffectation(user.getAffectation());
+				user.setNumber(user.getNumber());
+				return ur.save(user);
 			}
-			else if(tt.getUser() == null || a==null){
-				u.setTelephone(tt);
-				u.setMatricule(user.getMatricule());
-				u.setNom(user.getNom());
-				u.setPrenom(user.getPrenom());
-				u.setNumber(user.getNumber());
-				u.setPoste(user.getPoste());
-				u.setSiege(user.getSiege());
-				u.setAbonnement(null);
-				return ur.save(u);
-			}
-			else {
-				u.setTelephone(tt);
-				u.setMatricule(user.getMatricule());
-				u.setNom(user.getNom());
-				u.setPrenom(user.getPrenom());
-				u.setNumber(user.getNumber());
-				u.setPoste(user.getPoste());
-				u.setSiege(user.getSiege());
-				u.setAbonnement(user.getAbonnement());
-				return ur.save(u);
+			else{
+				user.setTelephone(t);
+				user.setMatricule(user.getMatricule());
+				user.setNom(user.getNom());
+				user.setPrenom(user.getPrenom());
+				user.setNumber(user.getNumber());
+				user.setPoste(user.getPoste());
+				user.setAffectation(user.getAffectation());
+				user.setAbonnement(a);
+				user.setActive(true);
+				return ur.save(user);
 			}
 		}
-		return null;
 	}
 	
 	public Telephone UpdatePhone(Telephone tele) {
 		Telephone t = tr.findById(tele.getId()).orElseThrow();
 		t.setName(tele.getName());
-		t.setCode(tele.getCode());
+		t.setNumero_facture(tele.getNumero_facture());
+		t.setNumero_serie(tele.getNumero_serie());
 		t.setMarque(tele.getMarque());
 		t.setModel(tele.getModel());
 		t.setDate_acquisition(tele.getDate_acquisition());
@@ -243,6 +247,7 @@ public class UserService implements IUserService{
 	public Abonnement UpdateAbonnement(Abonnement t) {
 		Abonnement ab = ar.findById(t.getId()).orElseThrow();
 		ab.setNom(t.getNom());
+		ab.setForfeit(t.getForfeit());
 		ab.setMontant(t.getMontant());
 		ab.setRemise(t.getRemise());
 		return ar.save(ab);
