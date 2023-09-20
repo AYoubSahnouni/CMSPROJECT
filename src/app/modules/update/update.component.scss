@@ -1,0 +1,25 @@
+
+.content {
+  padding-top: 10px;
+  width: 100% !important;
+}
+.row{
+  width: 100% !important;
+ gap: 10px;
+ display: flex;
+ flex-direction: column;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.head {
+  padding-bottom: 4%;
+}
+
+.action {
+  padding: 0px 25px 20px;
+  justify-content: space-between;
+
+}

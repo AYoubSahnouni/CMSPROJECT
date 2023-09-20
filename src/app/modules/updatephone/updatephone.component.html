@@ -1,0 +1,85 @@
+<div class="container">
+<div class="head" mat-dialog-title>
+  <h1>Modifier Telephone</h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+      <div class="row">
+        <mat-form-field class="outline">
+          <mat-label>Name</mat-label>
+          <input matInput  placeholder="Nom" formControlName="name" [value]="data.telephone.name">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Marque</mat-label>
+          <input matInput  placeholder="Marque" formControlName="marque" value="telephone.marque">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>No.Serie</mat-label>
+          <input matInput placeholder="Code" formControlName="numero_serie" value="telephone.numero.serie">
+        </mat-form-field>
+        <mat-form-field class="outline">
+          <mat-label>Model</mat-label>
+          <input matInput  placeholder="Model" formControlName="model" value="telephone.model">
+        </mat-form-field>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Etat</mat-label>
+            <mat-select formControlName="etat">
+              <mat-option selected [value]="data.telephone.etat">
+                {{data.telephone.etat}}
+              </mat-option>
+              <mat-option selected value="Bon etat">
+                Neuf
+              </mat-option>
+              <mat-option selected value="Etat moyen">
+                Bon Etat
+              </mat-option>
+              <mat-option selected value="Etat moyen">
+                Etat Moyen
+              </mat-option>
+              <mat-option selected value="Reconditionné">
+                Reconditionné
+              </mat-option>
+              <mat-option selected value="Reconditionné">
+                Hors Service
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="outline">
+          <mat-label>No.Facture</mat-label>
+          <input matInput placeholder="Numero facture" formControlName="numero_facture" value="telephone.numero_facture">
+        </mat-form-field>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Acquisition</mat-label>
+            <mat-select formControlName="acquisition">
+              <mat-option selected [value]="data.telephone.acquisition">
+                {{data.telephone.acquisition}}
+              </mat-option>
+              <mat-option selected value="Pts de fidélité">
+                Pts de fidélité
+              </mat-option>
+              <mat-option selected value="Abonnement">
+                Abonnement
+              </mat-option>
+              <mat-option selected value="Achat (Best Mark)">
+                Achat (Best Mark)
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="outline">
+          <mat-label>Date D'acquisition</mat-label>
+          <input matInput type="date" placeholder="Date" formControlName="date_acquisition" [value]="data.telephone.date_acquisition">
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button mat-dialog-close color="warn">
+          Annuler
+        </button>
+        <button mat-raised-button type="submit" color="primary" >Enregistrer</button>
+      </div>
+    </div>
+</form>
+</div>

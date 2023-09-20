@@ -1,0 +1,13 @@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+
+
+    <div class="d-flex justify-content-start" >
+                    <input  type="text" (keyup)="rechercher()"  [(ngModel)]="filterValue" class="form-control" name="x" placeholder="Rechercher...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" (click)="rechercher()">
+                           <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+    </div><!-- end container -->

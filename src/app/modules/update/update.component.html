@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="update">
+    <div class="head" mat-dialog-title>
+      <h1>Update Formulaire</h1>
+    </div>
+
+    <form [formGroup]="empForm" (ngSubmit)="onFormSubmit()">
+      <div mat-dialog-content class="content">
+        <div class="row">
+          <mat-label>Matricule</mat-label>
+          <mat-form-field class="outline">
+            <input matInput placeholder="Matricule" formControlName="matricule" [value]="data.employee.matricule">
+          </mat-form-field>
+
+          <mat-label>Nom</mat-label>
+          <mat-form-field class="outline">
+            <input matInput placeholder="Nom" formControlName="nom" value="employee.nom">
+          </mat-form-field>
+
+          <mat-label>Prenom</mat-label>
+          <mat-form-field class="outline">
+            <input matInput placeholder="Prenom" formControlName="prenom" value="employee.prenom">
+          </mat-form-field>
+
+          <mat-label>Poste</mat-label>
+          <mat-form-field class="outline">
+            <input matInput placeholder="Poste" formControlName="poste" value="employee.poste">
+          </mat-form-field>
+          <mat-label>Affectation</mat-label>
+          <mat-form-field class="outline">
+            <mat-select formControlName="affectation">
+              <mat-option *ngIf="option1" selected [value]="data.employee.affectation">
+                {{ data.employee.affectation }}
+              </mat-option>
+              <mat-option selected value="Siege">
+                Siege
+              </mat-option>
+              <mat-option selected value="Attijari">
+                Attijari
+              </mat-option>
+              <mat-option selected value="RMC">
+                RMC
+              </mat-option>
+              <mat-option selected value="ALBH">
+                ALBH
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div formGroupName="telephone">
+            <mat-label>Telephone</mat-label>
+            <mat-form-field appearance="outline">
+              <mat-select value="Selectionner telephone" formControlName="id">
+                <mat-option *ngIf="option" (click)="changemydataphone('000')" value="null">
+                  {{"sans telephone"}}
+                </mat-option>
+                <!-- (click)="changemydataphone(data.employee.telephone?.id)" -->
+                <mat-option *ngIf="option" selected [value]="data.employee.telephone?.id">
+                  {{ data.employee.telephone?.numero_serie + ' : ' + data.employee.telephone?.name }}
+                </mat-option>
+                <mat-option *ngFor="let telephone of telephones" [value]="telephone.id"
+                  (click)="changemydataphone(telephone.id)">
+                  {{ telephone.numero_serie + ' : ' + telephone.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+          <div formGroupName="telephone" *ngIf="dataphonechangit">
+            <mat-label>motif</mat-label>
+            <mat-form-field appearance="outline">
+              <mat-select value="Selectionner telephone" formControlName="motif">
+                <mat-option *ngIf="option" value="casse">
+                  {{"casse"}}
+                </mat-option>
+                <mat-option *ngIf="option" value="changement">
+                  {{"changement"}}
+                </mat-option>
+                <mat-option *ngIf="option" value="vol">
+                  {{"vol"}}
+                </mat-option>
+                <mat-option *ngIf="option" value="autre">
+                  {{"autre"}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div formGroupName="telephone" *ngIf="dataphonechangit">
+            <mat-label>commentaire</mat-label>
+            <mat-form-field class="outline">
+
+              <input matInput placeholder="commentaire" formControlName="commantaire">
+            </mat-form-field>
+          </div>
+
+
+          <mat-label>Numero telephone</mat-label>
+          <mat-form-field class="outline">
+
+            <input matInput mask="(000) 000-0000" placeholder="Ex. (000) 000-0000" formControlName="number"
+              value="employee.number">
+          </mat-form-field>
+          <div formGroupName="abonnement">
+            <mat-label>Abonnement</mat-label>
+            <mat-form-field appearance="outline">
+
+              <mat-select value="Selectionner abonnement" formControlName="id">
+                <mat-option *ngIf="option1" selected [value]="data.employee.abonnement.id">
+                  {{ data.employee.abonnement.nom + ' '+ data.employee.abonnement.forfeit }}
+                </mat-option>
+                <mat-option *ngFor="let ab of abonnements" [value]="ab.id">
+                  {{ ab.nom + ' '+ ab.forfeit }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div mat-dialog-actions class="action">
+          <button mat-raised-button mat-dialog-close color="warn">
+            Annuler
+          </button>
+          <button mat-raised-button type="submit" color="primary">Enregistrer</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

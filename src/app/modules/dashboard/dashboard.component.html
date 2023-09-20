@@ -1,0 +1,114 @@
+<div>
+  <app-area [data]="datatosend"></app-area>
+</div>
+<br>
+<mat-divider></mat-divider>
+<br>
+
+<div class="aa" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+  <mat-card fxFlex="25">
+    <app-cards label="Nouveaux Employés" [total]="sumnewuser"></app-cards>
+  </mat-card>
+  <mat-card fxFlex="25">
+    <app-cards label="Rétention Employés" [total]="sumretention" ></app-cards>
+  </mat-card>
+  <mat-card fxFlex="25">
+    <app-cards label="Démission Employés" [total]="sumresignation" ></app-cards>
+  </mat-card>
+  <mat-card fxFlex="25">
+    <app-cards label="Nombre de Telephones" [total]="numberphone" ></app-cards>
+  </mat-card>
+</div>
+
+<mat-divider></mat-divider>
+<br>
+
+<div class="btnexcel"><button class="button" mat-raised-button type="submit" color="primary" (click)="telechargerExcel()">Telecharger</button></div>
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <div fxFlex="100">
+    <div class="mat-elevation-z8">
+      <table id="ex" mat-table [dataSource]="dataSource">
+
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.nom || "-"}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="prenom">
+          <th mat-header-cell *matHeaderCellDef> Prenom </th>
+          <td mat-cell *matCellDef="let element"> {{element.prenom || "-"}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="matricule">
+          <th mat-header-cell *matHeaderCellDef> Matricule </th>
+          <td mat-cell *matCellDef="let element"> {{element.matricule || "-"}} </td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="poste">
+          <th mat-header-cell *matHeaderCellDef> Poste </th>
+          <td mat-cell *matCellDef="let element"> {{element.poste || "-"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="affectation">
+          <th mat-header-cell *matHeaderCellDef> Affectation </th>
+          <td mat-cell *matCellDef="let element"> {{element.affectation || "-"}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="telephone">
+          <th mat-header-cell *matHeaderCellDef> Telephones </th>
+          <td mat-cell *matCellDef="let element"> {{element.telephone?.name || " - "}} </td>
+        </ng-container>
+
+
+      <ng-container matColumnDef="acquisition">
+        <th mat-header-cell *matHeaderCellDef> Acquisition </th>
+        <td mat-cell *matCellDef="let element"> {{element.telephone?.acquisition || "-"}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date_acquisition">
+        <th mat-header-cell *matHeaderCellDef> Date D'acquisition </th>
+        <td mat-cell *matCellDef="let element"> {{element.telephone?.date_acquisition || "-"}}</td>
+      </ng-container>
+
+        <!-- <ng-container matColumnDef="montant">
+          <th mat-header-cell *matHeaderCellDef> Montant HT </th>
+          <td mat-cell *matCellDef="let element"> {{element.telephone?.montant || " - "}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="abonnement">
+          <th mat-header-cell *matHeaderCellDef> Abonnement </th>
+          <td mat-cell *matCellDef="let element"> {{ element.abonnement?.nom || " - "}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="forfeit">
+          <th mat-header-cell *matHeaderCellDef> Forfeit </th>
+          <td mat-cell *matCellDef="let element"> {{ element.abonnement?.forfeit || " - "}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="montant_abonnement">
+          <th mat-header-cell *matHeaderCellDef> Montant Abonnement </th>
+          <td mat-cell *matCellDef="let element"> {{element.abonnement?.montant || "-"}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+    </div>
+
+  </div>
+
+</div>

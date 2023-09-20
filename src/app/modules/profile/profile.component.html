@@ -1,0 +1,66 @@
+<section>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <img src="https://media.istockphoto.com/id/1300845620/fr/vectoriel/appartement-dic%C3%B4ne-dutilisateur-isol%C3%A9-sur-le-fond-blanc-symbole-utilisateur.jpg?s=612x612&w=0&k=20&c=BVOfS7mmvy2lnfBPghkN__k8OMsg7Nlykpgjn0YOHj0=" alt="avatar"
+            class="rounded-circle img-fluid" style="width: 150px;">
+          <h5 class="my-3">{{user?.nom }}</h5>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Nom Complet</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user?.nom +" "+user?.prenom}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Matricule</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user?.matricule || "-"}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Numero de Telephone</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user?.number || "non disponible"}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Telephone</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{employe?.telephone?.name || "non disponible" }}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Affectation</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{user?.affectation || "-" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>

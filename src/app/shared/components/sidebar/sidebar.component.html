@@ -1,0 +1,66 @@
+<mat-nav-list>
+  <div class="profile-card">
+    <div class="header">
+      <img
+        src="https://media.istockphoto.com/id/1300845620/fr/vectoriel/appartement-dic%C3%B4ne-dutilisateur-isol%C3%A9-sur-le-fond-blanc-symbole-utilisateur.jpg?s=612x612&w=0&k=20&c=BVOfS7mmvy2lnfBPghkN__k8OMsg7Nlykpgjn0YOHj0="
+        alt=""
+      />
+      <h3>{{user?.nom+" "+user?.prenom}}</h3>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div class="e">
+    <div class="icon">
+      <mat-icon>home</mat-icon>
+      <a
+        mat-list-item
+        routerLinkActive="List-item-active"
+        routerLink="/dashboard"
+        >Dashboard</a
+      >
+    </div>
+    <div class="icon">
+      <mat-icon>account_box</mat-icon>
+      <a mat-list-item routerLinkActive="List-item-active" routerLink="/dashboard/profile"
+        >Profile</a
+      >
+    </div>
+    <div class="icon">
+      <mat-icon>manage_accounts</mat-icon>
+      <a
+        mat-list-item
+        routerLinkActive="List-item-active"
+        routerLink="/dashboard/employes"
+        >Employes</a
+      >
+    </div>
+    <div class="icon">
+      <mat-icon>phone</mat-icon>
+      <a
+        mat-list-item
+        routerLinkActive="List-item-active"
+        routerLink="/dashboard/telephones"
+        >Telephones</a
+      >
+    </div>
+    <div class="icon">
+      <mat-icon>assignment</mat-icon>
+      <a
+        mat-list-item
+        routerLinkActive="List-item-active"
+        routerLink="/dashboard/abonnement"
+        >Abonnement</a
+      >
+    </div>
+    <div class="icon">
+      <mat-icon>visibility</mat-icon>
+      <a
+        mat-list-item
+        routerLinkActive="List-item-active"
+        routerLink="/dashboard/logs"
+        >historique</a
+      >
+    </div>
+  </div>
+</mat-nav-list>

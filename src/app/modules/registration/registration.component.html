@@ -1,0 +1,59 @@
+<div class="div">
+  <mat-card fxFlex="80">
+    <mat-card-header>
+      <h1>Ajouter Employé</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <form
+        class="example-form"
+        [formGroup]="registerform"
+        (ngSubmit)="proceedRegistration()"
+      >
+        <mat-form-field class="example-full-width">
+          <mat-label>Matricule</mat-label>
+          <input matInput formControlName="id" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Prenom</mat-label>
+          <input matInput formControlName="prenom" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Poste</mat-label>
+          <mat-select formControlName="poste">
+            <mat-option *ngFor="let p of Poste" [value]="p.value">
+              {{ p.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Telephone</mat-label>
+          <mat-select formControlName="Telephone">
+            <mat-option *ngFor="let p of telephone" [value]="p.value">
+              {{ p.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Numero</mat-label>
+          <input matInput formControlName="number" />
+        </mat-form-field>
+
+        <div class="button">
+          <button mat-raised-button color="primary">Enregistrer</button>
+          <button
+            routerLink="/login"
+            class="r"
+            mat-raised-button
+            color="accent"
+          >
+            Retour
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
